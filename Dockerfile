@@ -10,7 +10,7 @@ RUN if [[ -z "${REF}" ]]; then \
         cd trojan-go-c &&\
         git checkout ${REF} \
     ;fi
-RUN cd trojan-go-c &&\
+RUN cd docker-trojan-go &&\
     make &&\
     wget https://github.com/v2fly/domain-list-community/raw/release/dlc.dat -O build/geosite.dat &&\
     wget https://github.com/v2fly/geoip/raw/release/geoip.dat -O build/geoip.dat &&\
@@ -19,13 +19,13 @@ RUN cd trojan-go-c &&\
 FROM alpine
 WORKDIR /
 RUN apk add --no-cache tzdata ca-certificates
-COPY --from=builder /trojan-go-c/build /usr/local/bin/
-COPY --from=builder /trojan-go-c/example/server.json /etc/trojan-go/server.json
-COPY --from=builder /trojan-go-c/example/client.json /etc/trojan-go/client.json
-COPY --from=builder /trojan-go-c/geosite.dat /etc/trojan-go/geosite.dat
-COPY --from=builder /trojan-go-c/geoip.dat /etc/trojan-go/geoip.dat
-COPY --from=builder /trojan-go-c/geoip-only-cn-private.dat /etc/trojan-go/geoip-only-cn-private.dat
-COPY --from=builder /trojan-go-c/init.sh /etc/trojan-go/init.sh
+COPY --from=builder /docker-trojan-go/build /usr/local/bin/
+COPY --from=builder /docker-trojan-go/example/server.json /etc/trojan-go/server.json
+COPY --from=builder /docker-trojan-go/example/client.json /etc/trojan-go/client.json
+COPY --from=builder /docker-trojan-go/geosite.dat /etc/trojan-go/geosite.dat
+COPY --from=builder /docker-trojan-go/geoip.dat /etc/trojan-go/geoip.dat
+COPY --from=builder /docker-trojan-go/geoip-only-cn-private.dat /etc/trojan-go/geoip-only-cn-private.dat
+COPY --from=builder /docker-trojan-go/init.sh /etc/trojan-go/init.sh
 
 # ENTRYPOINT ["/usr/local/bin/trojan-go-c", "-config"]
 # CMD ["/etc/trojan-go/config.json"]
