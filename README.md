@@ -75,11 +75,17 @@ Trojan-Go 服务端兼容所有原 Trojan 客户端，如 Igniter、ShadowRocket
 
     ```shell
     docker run \
-        --name trojan-go \
+        -e T=c \
+        -e SP=1080 \
+        -e S=your_trojan_server.com \
+        -e P=your_trojan_password \
         -d \
+        -v /opt/trojan-go:/etc/trojan-go/ \
+        --network host \
+        --name trojan-go \
         -v /etc/trojan-go/:/etc/trojan-go \
         --network host \
-        p4gefau1t/trojan-go
+        aircross/docker_trojan_go:latest
     ```
 
    或者
@@ -87,10 +93,14 @@ Trojan-Go 服务端兼容所有原 Trojan 客户端，如 Igniter、ShadowRocket
     ```shell
     docker run \
         --name trojan-go \
+        -e T=c \
+        -e SP=1080 \
+        -e S=your_trojan_server.com \
+        -e P=your_trojan_password \
         -d \
-        -v /path/to/host/config:/path/in/container \
+        -v /opt/trojan-go:/etc/trojan-go/ \
         --network host \
-        p4gefau1t/trojan-go \
+        aircross/docker_trojan_go:latest \
         /path/in/container/config.json
     ```
 
