@@ -7,7 +7,7 @@ RUN if [[ -z "${REF}" ]]; then \
         echo "No specific commit provided, use the latest one." \
     ;else \
         echo "Use commit ${REF}" &&\
-        cd trojan-go-c &&\
+        cd docker-trojan-go &&\
         git checkout ${REF} \
     ;fi
 RUN cd docker-trojan-go &&\
@@ -27,7 +27,7 @@ COPY --from=builder /docker-trojan-go/geoip.dat /etc/trojan-go/geoip.dat
 COPY --from=builder /docker-trojan-go/geoip-only-cn-private.dat /etc/trojan-go/geoip-only-cn-private.dat
 COPY --from=builder /docker-trojan-go/init.sh /etc/trojan-go/init.sh
 
-# ENTRYPOINT ["/usr/local/bin/trojan-go-c", "-config"]
+# ENTRYPOINT ["/usr/local/bin/docker-trojan-go", "-config"]
 # CMD ["/etc/trojan-go/config.json"]
 # T 服务类型
 # S 服务器地址
