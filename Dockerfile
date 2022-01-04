@@ -2,7 +2,7 @@ FROM golang:alpine AS builder
 WORKDIR /
 ARG REF
 RUN apk add git make &&\
-    git clone https://github.com/aircross/trojan-go-c.git
+    git clone https://github.com/aircross/docker-trojan-go.git
 RUN if [[ -z "${REF}" ]]; then \
         echo "No specific commit provided, use the latest one." \
     ;else \
