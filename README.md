@@ -83,7 +83,6 @@ Trojan-Go 服务端兼容所有原 Trojan 客户端，如 Igniter、ShadowRocket
         -v /opt/trojan-go:/etc/trojan-go/ \
         --network host \
         --name trojan-go \
-        -v /etc/trojan-go/:/etc/trojan-go \
         --network host \
         aircross/docker_trojan_go:latest
     ```
