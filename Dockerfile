@@ -14,7 +14,7 @@ RUN apk add --no-cache tzdata ca-certificates jq curl wget &&\
     wget --no-check-certificate $URL && \
     unzip trojan-go-linux-amd64.zip && \
     wget https://github.com/aircross/docker-trojan-go/raw/master/init.sh -O init.sh && \
-    chmod +x init.sh && \
+    chmod +x init.sh
     
 
 # ENTRYPOINT ["/usr/local/bin/docker-trojan-go", "-config"]
