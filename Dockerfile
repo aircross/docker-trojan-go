@@ -34,4 +34,4 @@ COPY --from=builder /docker-trojan-go/init.sh /etc/trojan-go/init.sh
 # S 服务器地址
 # P 密码
 # SP Socks Port 端口
-ENTRYPOINT /bin/sh /etc/trojan-go/init.sh $T $S $P $SP
+ENTRYPOINT /etc/trojan-go/init.sh $T $S $P $SP
