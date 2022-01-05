@@ -9,7 +9,8 @@ RUN apk add --no-cache tzdata ca-certificates jq curl wget &&\
 	VER_NUM=$(echo $VER|cut -b 2-) && \
 	echo VER_NUM && \
 	URL=$(curl -s https://api.github.com/repos/aircross/docker-trojan-go/releases/tags/${VER} | jq .assets[0].browser_download_url | tr -d \") && \
-    URL=https://github.com/aircross/docker-trojan-go/releases/download/$VER/trojan-go-linux-amd64.zip && \
+    # URL=https://github.com/aircross/docker-trojan-go/releases/download/$VER/trojan-go-linux-amd64.zip && \
+    URL=https://github.com/aircross/docker-trojan-go/releases/download/v0.10.7/trojan-go-linux-amd64.zip && \
     wget --no-check-certificate $URL && \
     unzip trojan-go-linux-amd64.zip && \
     wget https://github.com/aircross/docker-trojan-go/raw/release/init.sh -O init.sh && \
