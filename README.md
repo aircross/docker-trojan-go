@@ -2,6 +2,8 @@
 
 使用 Go 实现的完整 Trojan 代理，兼容原版 Trojan 协议及配置文件格式。安全、高效、轻巧、易用。
 
+此 docker 教程与 docker 镜像由https://vps.la提供
+
 Trojan-Go 支持[多路复用](#多路复用)提升并发性能；使用[路由模块](#路由模块)实现国内外分流；支持 [CDN 流量中转](#Websocket)(基于 WebSocket over TLS)；支持使用 AEAD 对 Trojan 流量进行[二次加密](#aead-加密)(基于 Shadowsocks AEAD)；支持可插拔的[传输层插件](#传输层插件)，允许替换 TLS，使用其他加密隧道传输 Trojan 协议流量。
 
 预编译二进制可执行文件可在 [Release 页面](https://github.com/p4gefau1t/trojan-go/releases)下载。解压后即可直接运行，无其他组件依赖。
@@ -72,7 +74,13 @@ Trojan-Go 服务端兼容所有原 Trojan 客户端，如 Igniter、ShadowRocket
     ```
 
 4. 使用 Docker 部署
+   4.1. 安装docker
 
+    ```shell
+    curl -fsSL https://get.docker.com | sh
+    ```
+
+    4.2.1. 运行Docker
     ```shell
     docker run \
         -e T=c \
@@ -86,7 +94,7 @@ Trojan-Go 服务端兼容所有原 Trojan 客户端，如 Igniter、ShadowRocket
         aircross/trojan-go:latest
     ```
 
-   或者
+    4.2.2. 或者运行Docker
 
     ```shell
     docker run \
@@ -101,6 +109,11 @@ Trojan-Go 服务端兼容所有原 Trojan 客户端，如 Igniter、ShadowRocket
         aircross/trojan-go:latest \
         /path/in/container/config.json
     ```
+    ### 其中参数含义如下：
+    - T 服务类型，c为客户端，s为服务端
+    - S 服务器地址
+    - P 密码
+    - SP Socks Port 端口
 
 ## 特性
 

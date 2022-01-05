@@ -31,7 +31,8 @@ func (c *versionOption) Handle() error {
 		fmt.Println("")
 		fmt.Println("Developed by PageFault (p4gefau1t)")
 		fmt.Println("Licensed under GNU General Public License version 3")
-		fmt.Println("GitHub Repository:\thttps://github.com/p4gefau1t/trojan-go")
+		fmt.Println("GitHub Repository:\thttps://github.com/aircross/docker-trojan-go")
+		fmt.Println("VPS List:\thttps://vps.la")
 		fmt.Println("Trojan-Go Documents:\thttps://p4gefau1t.github.io/trojan-go/")
 		return nil
 	}

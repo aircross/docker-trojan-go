@@ -20,8 +20,8 @@ FROM alpine
 WORKDIR /
 RUN apk add --no-cache tzdata ca-certificates
 COPY --from=builder /docker-trojan-go/build /usr/local/bin/
-COPY --from=builder /docker-trojan-go/example/server.json /etc/trojan-go/server.json
-COPY --from=builder /docker-trojan-go/example/client.json /etc/trojan-go/client.json
+COPY --from=builder /docker-trojan-go/example/server.json /etc/trojan-go/server.sample.json
+COPY --from=builder /docker-trojan-go/example/client.json /etc/trojan-go/client.sample.json
 COPY --from=builder /docker-trojan-go/build/geosite.dat /etc/trojan-go/geosite.dat
 COPY --from=builder /docker-trojan-go/build/geoip.dat /etc/trojan-go/geoip.dat
 COPY --from=builder /docker-trojan-go/build/geoip-only-cn-private.dat /etc/trojan-go/geoip-only-cn-private.dat
