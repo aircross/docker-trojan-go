@@ -9,11 +9,11 @@ if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
     # P 密码
     # SP Socks Port 端口
     
-    if [ ! -d "/etc/trojan-go/" ];then
-        mkdir /etc/trojan-go/
-    else
-        echo "文件夹已经存在,无需创建"
-    fi
+    # if [ ! -d "/etc/trojan-go/" ];then
+    #     mkdir /etc/trojan-go/
+    # else
+    #     echo "文件夹已经存在,无需创建"
+    # fi
     if [ ! -d "/trojan-go/" ];then
         mkdir /trojan-go/
     else
@@ -79,8 +79,8 @@ EOF
 EOF
     fi
     touch $CONTAINER_ALREADY_STARTED
-    /usr/local/bin/trojan-go -config /trojan-go/config.json
+    /trojan-go -config /trojan-go/config.json
 else
     echo "-- Not first container startup --"
-    /usr/local/bin/trojan-go -config /trojan-go/config.json
+    /trojan-go -config /trojan-go/config.json
 fi

@@ -1,34 +1,20 @@
-FROM golang:alpine AS builder
-WORKDIR /
-# 可用于指定编译版本
-ARG REF
-RUN apk add git make
-RUN git clone https://github.com/aircross/docker-trojan-go.git
-RUN if [[ -z "${REF}" ]]; then \
-        echo "No specific commit provided, use the latest one." \
-    ;else \
-        echo "Use commit ${REF}" &&\
-        cd docker-trojan-go &&\
-        git checkout ${REF} \
-    ;fi
-RUN cd docker-trojan-go &&\
-    make &&\
-    wget https://github.com/v2fly/domain-list-community/raw/release/dlc.dat -O build/geosite.dat &&\
-    wget https://github.com/v2fly/geoip/raw/release/geoip.dat -O build/geoip.dat &&\
-    wget https://github.com/v2fly/geoip/raw/release/geoip-only-cn-private.dat -O build/geoip-only-cn-private.dat
-
 FROM alpine
 WORKDIR /
-RUN apk add --no-cache tzdata ca-certificates
-COPY --from=builder /docker-trojan-go/build /usr/local/bin/
-COPY --from=builder /docker-trojan-go/example/server.json /etc/trojan-go/server.sample.json
-COPY --from=builder /docker-trojan-go/example/client.json /etc/trojan-go/client.sample.json
-COPY --from=builder /docker-trojan-go/build/geosite.dat /etc/trojan-go/geosite.dat
-COPY --from=builder /docker-trojan-go/build/geoip.dat /etc/trojan-go/geoip.dat
-COPY --from=builder /docker-trojan-go/build/geoip-only-cn-private.dat /etc/trojan-go/geoip-only-cn-private.dat
-COPY --from=builder /docker-trojan-go/init.sh /etc/trojan-go/init.sh
-
-RUN chmod +x /etc/trojan-go/init.sh
+# https://api.github.com/repos/aircross/docker-trojan-go/releases/latest
+RUN apk add --no-cache tzdata ca-certificates &&\
+    mkdir /trojan-go &&\
+    cd /trojan-go &&\
+	VER=$(curl -s https://api.github.com/repos/aircross/docker-trojan-go/releases/latest | grep tag_name | cut -d '"' -f 4) && \
+	# VER_NUM=bash ${VER:1} && \
+	VER_NUM=$(echo $VER|cut -b 2-) && \
+	echo VER_NUM && \
+	URL=$(curl -s https://api.github.com/repos/aircross/docker-trojan-go/releases/tags/${VER} | jq .assets[0].browser_download_url | tr -d \") && \
+    URL=https://github.com/aircross/docker-trojan-go/releases/download/$VER/trojan-go-linux-amd64.zip && \
+    wget --no-check-certificate $URL && \
+    unzip trojan-go-linux-amd64.zip && \
+    wget https://github.com/aircross/docker-trojan-go/raw/release/init.sh -O init.sh && \
+    chmod +x init.sh && \
+    
 
 # ENTRYPOINT ["/usr/local/bin/docker-trojan-go", "-config"]
 # CMD ["/etc/trojan-go/config.json"]
@@ -36,4 +22,4 @@ RUN chmod +x /etc/trojan-go/init.sh
 # S 服务器地址
 # P 密码
 # SP Socks Port 端口
-ENTRYPOINT /etc/trojan-go/init.sh $T $S $P $SP
+ENTRYPOINT /trojan-go/init.sh $T $S $P $SP
