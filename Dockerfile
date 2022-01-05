@@ -1,5 +1,6 @@
 FROM golang:alpine AS builder
 WORKDIR /
+# 可用于指定编译版本
 ARG REF
 RUN apk add git make
 RUN git clone https://github.com/aircross/docker-trojan-go.git
