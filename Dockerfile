@@ -1,7 +1,7 @@
 FROM alpine
 WORKDIR /
 # https://api.github.com/repos/aircross/docker-trojan-go/releases/latest
-RUN apk add --no-cache tzdata ca-certificates &&\
+RUN apk add --no-cache tzdata ca-certificates jq curl&&\
     mkdir /trojan-go &&\
     cd /trojan-go &&\
 	VER=$(curl -s https://api.github.com/repos/aircross/docker-trojan-go/releases/latest | grep tag_name | cut -d '"' -f 4) && \
