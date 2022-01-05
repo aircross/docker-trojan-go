@@ -14,6 +14,11 @@ if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
     else
         echo "文件夹已经存在,无需创建"
     fi
+    if [ ! -d "/trojan-go/" ];then
+        mkdir /trojan-go/
+    else
+        echo "文件夹已经存在,无需创建"
+    fi
     if [[ $1 == 'c' ||$1 == 'C' || $1 == '' ]];then
         # 类型是c,或者直接回车，代表客户端类型
         if [ $# -lt 3 ]; then 
@@ -33,7 +38,7 @@ if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
         else
             socksport=${4}
         fi
-        cat > "/etc/trojan-go/config.json" << EOF
+        cat > "/trojan-go/config.json" << EOF
 {
     "run_type": "client",
     "local_addr": "0.0.0.0",
@@ -71,7 +76,7 @@ if [ ! -e $CONTAINER_ALREADY_STARTED ]; then
 EOF
     else
         # 类型是c,或者直接回车，代表客户端类型
-        cat > "/etc/trojan-go/config.json" << EOF
+        cat > "/trojan-go/config.json" << EOF
 {
     "run_type": "server",
     "local_addr": "0.0.0.0",
@@ -98,8 +103,8 @@ EOF
 EOF
     fi
     touch $CONTAINER_ALREADY_STARTED
-    # /usr/local/bin/trojan-go-c -config /etc/trojan-go/config.json
+    # /usr/local/bin/trojan-go -config /trojan-go/config.json
 else
     echo "-- Not first container startup --"
-    # /usr/local/bin/trojan-go-c -config /etc/trojan-go/config.json
+    # /usr/local/bin/trojan-go -config /trojan-go/config.json
 fi

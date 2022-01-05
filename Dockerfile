@@ -37,4 +37,4 @@ RUN chmod +x /etc/trojan-go/init.sh
 # S 服务器地址
 # P 密码
 # SP Socks Port 端口
-ENTRYPOINT /etc/trojan-go/init.sh $T $S $P $SP
+# ENTRYPOINT /etc/trojan-go/init.sh $T $S $P $SP
