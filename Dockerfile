@@ -28,7 +28,6 @@ COPY --from=builder /docker-trojan-go/build/geoip.dat /etc/trojan-go/geoip.dat
 COPY --from=builder /docker-trojan-go/build/geoip-only-cn-private.dat /etc/trojan-go/geoip-only-cn-private.dat
 COPY --from=builder /docker-trojan-go/init.sh /etc/trojan-go/init.sh
 
-
 RUN chmod +x /etc/trojan-go/init.sh
 
 # ENTRYPOINT ["/usr/local/bin/docker-trojan-go", "-config"]
@@ -37,4 +36,4 @@ RUN chmod +x /etc/trojan-go/init.sh
 # S 服务器地址
 # P 密码
 # SP Socks Port 端口
-# ENTRYPOINT /etc/trojan-go/init.sh $T $S $P $SP
+ENTRYPOINT /etc/trojan-go/init.sh $T $S $P $SP

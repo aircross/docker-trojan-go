@@ -51,10 +51,10 @@ jobs:
           --build-arg REF=${{ steps.prepare.outputs.ref }} \
           --file Dockerfile .
 
-  test:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Test docker image
-        run: |
-          docker run --rm --entrypoint /usr/local/bin/trojan-go ${{ secrets.DOCKER_USERNAME }}/trojan-go -version
+  # test:
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Test docker image
+  #       run: |
+  #         docker run --rm --entrypoint /usr/local/bin/trojan-go ${{ secrets.DOCKER_USERNAME }}/trojan-go -version

@@ -1,4 +1,6 @@
-# Trojan-Go [![Go Report Card](https://goreportcard.com/badge/github.com/p4gefau1t/trojan-go)](https://goreportcard.com/report/github.com/p4gefau1t/trojan-go) [![Downloads](https://img.shields.io/github/downloads/p4gefau1t/trojan-go/total?label=downloads&logo=github&style=flat-square)](https://img.shields.io/github/downloads/p4gefau1t/trojan-go/total?label=downloads&logo=github&style=flat-square)
+# Trojan-Go [![Go Report Card](https://goreportcard.com/badge/github.com/aircross/docker-trojan-go)](https://goreportcard.com/report/github.com/aircross/docker-trojan-go) [![Downloads](https://img.shields.io/github/downloads/aircross/docker-trojan-go/total?label=downloads&logo=github&style=flat-square)](https://img.shields.io/github/downloads/aircross/docker-trojan-go/total?label=downloads&logo=github&style=flat-square)
+
+# 暂不可用
 
 使用 Go 实现的完整 Trojan 代理，兼容原版 Trojan 协议及配置文件格式。安全、高效、轻巧、易用。
 

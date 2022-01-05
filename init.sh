@@ -103,8 +103,8 @@ EOF
 EOF
     fi
     touch $CONTAINER_ALREADY_STARTED
-    # /usr/local/bin/trojan-go -config /trojan-go/config.json
+    /usr/local/bin/trojan-go -config /trojan-go/config.json
 else
     echo "-- Not first container startup --"
-    # /usr/local/bin/trojan-go -config /trojan-go/config.json
+    /usr/local/bin/trojan-go -config /trojan-go/config.json
 fi
