@@ -13,7 +13,7 @@ RUN apk add --no-cache tzdata ca-certificates jq curl wget &&\
     URL=https://github.com/aircross/docker-trojan-go/releases/download/v0.10.7/trojan-go-linux-amd64.zip && \
     wget --no-check-certificate $URL && \
     unzip trojan-go-linux-amd64.zip && \
-    wget https://github.com/aircross/docker-trojan-go/raw/release/init.sh -O init.sh && \
+    wget https://github.com/aircross/docker-trojan-go/raw/master/init.sh -O init.sh && \
     chmod +x init.sh && \
     
 
