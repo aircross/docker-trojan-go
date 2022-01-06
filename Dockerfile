@@ -1,7 +1,10 @@
 FROM alpine
 WORKDIR /
 # https://api.github.com/repos/aircross/docker-trojan-go/releases/latest
-RUN case "$(uname -m)" in  \
+RUN echo "******************系统平台******************" && \
+    echo "$(uname -m)" && \
+    echo "******************系统平台******************" && \
+    case "$(uname -m)" in  \
     x86_64) PLATFORM='x86_64';; && \
     armv5l) PLATFORM='armv5';; && \
     armv6l) PLATFORM='armv6';; && \
@@ -14,9 +17,6 @@ RUN case "$(uname -m)" in  \
     apk add --no-cache tzdata ca-certificates jq curl wget &&\
     mkdir /trojan-go &&\
     cd /trojan-go &&\
-    echo "******************系统平台******************" && \
-    echo "$(uname -m)" && \
-    echo "******************系统平台******************" && \
     # if [ "$(uname -m)" = "x86_64" ]; then export PLATFORM=amd64 ; else if [ "$(uname -m)" = "aarch64" ]; then export PLATFORM=arm64 ; else if [ "$(uname -m)" = "armv7l" ]; then export PLATFORM=arm ; fi fi fi && \
 	VER=$(curl -s https://api.github.com/repos/aircross/docker-trojan-go/releases/latest | grep tag_name | cut -d '"' -f 4) && \
 	# VER_NUM=bash ${VER:1} && \
