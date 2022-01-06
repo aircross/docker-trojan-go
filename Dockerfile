@@ -10,7 +10,7 @@ RUN echo "******************系统平台******************" && \
     armv6l) PLATFORM='armv6';; \
     armv7l) PLATFORM='armv7';; \
     armv8l) PLATFORM='armv8';; \
-    aarch64) PLATFORM='arm64';; \
+    aarch64) PLATFORM='arm';; \
     *) echo "unsupported architecture"; exit 1 ;; \
     esac && \
     set -x && \
