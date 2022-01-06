@@ -15,7 +15,7 @@ RUN case "$(uname -m)" in  \
     mkdir /trojan-go &&\
     cd /trojan-go &&\
     echo "******************系统平台******************" && \
-    echo $(uname -m) && \
+    echo "$(uname -m)" && \
     echo "******************系统平台******************" && \
     # if [ "$(uname -m)" = "x86_64" ]; then export PLATFORM=amd64 ; else if [ "$(uname -m)" = "aarch64" ]; then export PLATFORM=arm64 ; else if [ "$(uname -m)" = "armv7l" ]; then export PLATFORM=arm ; fi fi fi && \
 	VER=$(curl -s https://api.github.com/repos/aircross/docker-trojan-go/releases/latest | grep tag_name | cut -d '"' -f 4) && \
