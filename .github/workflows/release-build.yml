@@ -34,4 +34,4 @@ jobs:
           tag: ${{ env.TAG_NAME }}
           file: ./trojan-go-*.zip
           file_glob: true
-          prerelease: true
+          # prerelease: true
