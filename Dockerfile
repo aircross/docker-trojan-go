@@ -5,12 +5,12 @@ RUN echo "******************系统平台******************" && \
     echo "$(uname -m)" && \
     echo "******************系统平台******************" && \
     case "$(uname -m)" in  \
-    x86_64) PLATFORM='x86_64';; \
+    x86_64) PLATFORM='amd64';; \
     armv5l) PLATFORM='armv5';; \
     armv6l) PLATFORM='armv6';; \
     armv7l) PLATFORM='armv7';; \
     armv8l) PLATFORM='armv8';; \
-    aarch64) PLATFORM='aarch64';; \
+    aarch64) PLATFORM='arm64';; \
     *) echo "unsupported architecture"; exit 1 ;; \
     esac && \
     set -x && \
