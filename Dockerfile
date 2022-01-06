@@ -1,16 +1,16 @@
 FROM alpine
 WORKDIR /
 # https://api.github.com/repos/aircross/docker-trojan-go/releases/latest
-RUN set -x && \
-    case "$(uname -m)" in && \
-    x86_64) PLATFORM='x86_64' && \
-    armv5l) PLATFORM='armv5' && \
-    armv6l) PLATFORM='armv6' && \
-    armv7l) PLATFORM='armv7' && \
-    armv8l) PLATFORM='armv8' && \
-    aarch64) PLATFORM='aarch64' && \
-    *) echo "unsupported architecture"; exit 1  && \
+RUN case "$(uname -m)" in  \
+    x86_64) PLATFORM='x86_64';; && \
+    armv5l) PLATFORM='armv5';; && \
+    armv6l) PLATFORM='armv6';; && \
+    armv7l) PLATFORM='armv7';; && \
+    armv8l) PLATFORM='armv8';; && \
+    aarch64) PLATFORM='aarch64';; && \
+    *) echo "unsupported architecture"; exit 1 ;; \
     esac && \
+    set -x && \
     apk add --no-cache tzdata ca-certificates jq curl wget &&\
     mkdir /trojan-go &&\
     cd /trojan-go &&\
