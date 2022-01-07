@@ -118,6 +118,12 @@ Trojan-Go 服务端兼容所有原 Trojan 客户端，如 Igniter、ShadowRocket
     - P 密码
     - SP Socks Port 端口
 
+    ### 运行完后通过输入以下命令进入容器，编辑配置文件：
+    /trojan-go/config.json
+    ```shell
+    docker exec -it trojan bash
+    ```
+
 ## 特性
 
 一般情况下，Trojan-Go 和 Trojan 是互相兼容的，但一旦使用下面介绍的扩展特性（如多路复用、Websocket 等），则无法兼容。
